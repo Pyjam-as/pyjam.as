@@ -1,13 +1,16 @@
 
 
 # deps
-from quart import Blueprint
+from quart import Blueprint, render_template
 from loguru import logger
 
-bp = Blueprint('hello', __name__)
+bp = Blueprint('hello', __name__,
+               template_folder='templates',
+               static_folder='static',
+               static_url_path='/static')
 
 
 @bp.route('/')
-def hello_world():
+async def hello_world():
     logger.info("Serving Hello World page.")
-    return "Hello, world!"
+    return await render_template('hello.j2.html')

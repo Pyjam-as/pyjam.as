@@ -1,6 +1,6 @@
 
 run:
-	. .env && \
+	. ./.env && \
 	pipenv run \
 	quart run
 
