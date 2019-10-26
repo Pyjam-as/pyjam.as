@@ -1,22 +1,7 @@
-<!DOCTYPE HTML>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
+{% extends 'base.j2.html' %}
 
-    <title>🐍❌(🍓🍞)=👕👖</title>
-    <!-- GEDDIT? -->
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/nuclear.min.css') }}">
-  </head>
-
-  <body>
-    <nav class="navbar is-primary">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://pyjam.as/"><b>PYJAM.AS</b>/🐍</a>
-      </div>
-    </nav>
-
+{% block content %}
     <center>
       <br>
       <h1 class="title is-1"> Hello, world!  </h1>
@@ -37,5 +22,4 @@
  ██           ██     ░█████▒   ██▒  ▒██  ██    ██  ██  ██▒  ▒██  ░█████▒  </pre>
       </code>
     </center>
-  </body>
-</html>
+{% endblock %}

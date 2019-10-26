@@ -1,0 +1,11 @@
+{% extends 'base.j2.html' %}
+
+{% block content %}
+  <center>
+    <br>
+    <audio controls>
+      <source src="{{ url_for('static', filename='hag.wav') }}" type="audio/wav"/>
+      If you're reading this, your browser sucks.
+    </audio>
+  </center>
+{% endblock %}
