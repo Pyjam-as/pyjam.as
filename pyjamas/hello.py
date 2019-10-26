@@ -14,3 +14,9 @@ bp = Blueprint('hello', __name__,
 async def hello_world():
     logger.info("Serving Hello World page.")
     return await render_template('hello.j2.html')
+
+
+@bp.route('/hag-øh')
+async def hagøh():
+    logger.info("Serving HAG-ØH page.")
+    return await render_template('hag.j2.html')
