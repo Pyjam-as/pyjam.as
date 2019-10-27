@@ -16,7 +16,7 @@ async def hello_world():
     return await render_template('hello.j2.html')
 
 
-@bp.route('/ha-gøh')
+@bp.route('/HA-GØH')
 async def hagøh():
     logger.info("Serving HA-GØH page.")
     return await render_template('hag.j2.html')
