@@ -20,3 +20,9 @@ async def hello_world():
 async def hagøh():
     logger.info("Serving HA-GØH page.")
     return await render_template('hag.j2.html')
+
+
+@bp.route('/hackervandfald')
+async def vandfald():
+    logger.info("Serving hackervandfald page.")
+    return await render_template('vandfald.j2.html')
