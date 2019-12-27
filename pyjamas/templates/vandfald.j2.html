@@ -1,32 +1,37 @@
 {% extends 'base.j2.html' %}
 
 {% block content %}
-  <center>
 <style>
-.customlst {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-left: 50px;
+#rules{
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    margin: 0 auto;
+    width: 500px;
+    font-family: "sans-serif";
+    
 }
-.custom li:before {
-  display: inline-block;
-  content: attr(data-bullet);
-  width: 50px;
-  margin-left: -50px;
+.suit{
+    text-align: right;
+    padding-right: 5px;
+}
+.rule{
+    text-align: left;
+    
+}
+.rule::before{
+    padding-right: 2px;
+    content:"=";
 }
 </style>
-      <ul class="customlst">
-        <li data-bullet="1,&ldots;,5">Giv en tår</li>
-        <li data-bullet="1,&ldots;,5">Tag en tår</li>
-        <li data-bullet="6">ISO standard</li>
-        <li data-bullet="7">FizzBuzz</li>
-        <li data-bullet="8"><kbd>CTRL</kbd>+<kbd>R</kbd> (jeg har aldrig)</li>
-        <li data-bullet="9">Hackermærkeleg</li>
-        <li data-bullet="10">RFC</li>
-        <li data-bullet="11">VIM-skål</li>
-        <li data-bullet="12">debian(baseret)skål</li>
-        <li data-bullet="13">BDFL med root privilegier (<code>sudo</code> siger)</li>
-      </ul>
-  </center>
+<div id="rules">
+    <span class="suit"> 1,&ldots;,5 </span><span class="equals">=</span><span class="rule"> giv/tag en tår</span>
+    <span class="suit"> 6 </span><span class="rule"> ISO standard</span>
+    <span class="suit"> 7 </span><span class="rule"> FizzBuzz</span>
+    <span class="suit"> 8 </span><span class="rule"> <kbd>&lt;C-r&gt;</kbd> (jeg har aldrig)</span>
+    <span class="suit"> 9 </span><span class="rule"> Hackermærkeleg</span>
+    <span class="suit"> 10 </span><span class="rule"> Rfc</span>
+    <span class="suit"> 11 </span><span class="rule"> Vimskål</span>
+    <span class="suit"> 12 </span><span class="rule"> Debian(baseret)skål</span>
+    <span class="suit"> 13 </span><span class="rule"> <kbd>gpasswd -a user sudo</kbd> </span>
+</div>
 {% endblock %}
