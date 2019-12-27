@@ -2,15 +2,31 @@
 
 {% block content %}
   <center>
-      <p> 1,2,3,4,5 = giv en tår<br>
-          6 = iso standard<br>
-          7 = fizz buzz<br>
-          8 = ctrl-r (jeg har aldrig)<br>
-          9 = hackermærkeleg<br>
-          10 = rfc<br>
-          11 = vimskål<br>
-          12 = debian(baseret)skål<br>
-          13 = BDFL med root privilegier (sudo siger)
-    </p>
+<style>
+.customlst {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 50px;
+}
+.custom li:before {
+  display: inline-block;
+  content: attr(data-bullet);
+  width: 50px;
+  margin-left: -50px;
+}
+</style>
+      <ul class="customlst">
+        <li data-bullet="1,&ldots;,5">Giv en tår</li>
+        <li data-bullet="1,&ldots;,5">Tag en tår</li>
+        <li data-bullet="6">ISO standard</li>
+        <li data-bullet="7">FizzBuzz</li>
+        <li data-bullet="8"><kbd>CTRL</kbd>+<kbd>R</kbd> (jeg har aldrig)</li>
+        <li data-bullet="9">Hackermærkeleg</li>
+        <li data-bullet="10">RFC</li>
+        <li data-bullet="11">VIM-skål</li>
+        <li data-bullet="12">debian(baseret)skål</li>
+        <li data-bullet="13">BDFL med root privilegier (<code>sudo</code> siger)</li>
+      </ul>
   </center>
 {% endblock %}
