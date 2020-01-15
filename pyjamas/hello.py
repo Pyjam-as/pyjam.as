@@ -17,9 +17,9 @@ async def hello_world():
 async def robots():  # TODO:  🤖 as function name
     return await send_from_directory(bp.static_folder, "robots.txt")
 
-@bp.route('/CTF{not_this_🥜}/')
+@bp.route('/CTF{not_this_🌰}/')
 async def robots2():
-    return redirect("https://pyjam.as/CTF{not_this_🌰}/", code=418)
+    return redirect("https://pyjam.as/", code=418)
 
 @bp.route('/HA-GØH')
 async def hagøh():
