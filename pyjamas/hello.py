@@ -1,7 +1,5 @@
-
-
-# deps
 from quart import Blueprint, render_template
+from quart.static import send_from_directory
 from loguru import logger
 
 bp = Blueprint('hello', __name__,
@@ -15,6 +13,9 @@ async def hello_world():
     logger.info("Serving Hello World page.")
     return await render_template('hello.j2.html')
 
+@bp.route('/robots.txt')
+async def robots():  # TODO:  🤖 as function name
+    return await send_from_directory(bp.static_folder, "robots.txt")
 
 @bp.route('/HA-GØH')
 async def hagøh():
