@@ -1,6 +1,51 @@
 {% extends 'base.j2.html' %}
 
 {% block content %}
+
+  <!-- IPFS STUFF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ipfs/0.49.0/index.min.js" integrity="sha512-tkN0Ow9SQEathLaPGWL75sD9MSPBhSNGbdhMy8clcRNqOIiJZcQ7aqvL5UACKhz5mcbXk8L/vHLVE+3K2/o9zA==" crossorigin="anonymous"></script>
+  <script>
+    Ipfs.create().then(node => {
+
+      // update peers every 2 seconds
+      setInterval(function () {
+        node.swarm.peers().then(peers => {
+          document.getElementById("ipfs-peers").innerText = "IPFS Peers: " + peers.length.toString()
+        });
+      }, 2000);
+
+      async function readPath(path) {
+        console.log("Getting " + path)
+        var base64 = ""
+        for await (const chunk of node.cat(path)) {
+          for (c of chunk) {
+            //chunks.push(c)
+            base64 += String.fromCharCode(c)
+          }
+        }
+
+        // get rid of newlines
+        base64 = base64.replace( /[\r\n]+/gm, "" )
+
+        const datauri = "data:audio/wav;base64," + base64
+        console.log("URI: " + datauri)
+
+        if (datauri.includes("\n")) {
+          console.log("HAS NEWLINE")
+        }
+
+        console.log("DONE")
+      }
+      // do the async thing
+      const wavPath = 'QmYLExxC1UobcfJ5fYFcjxq8jggpQUGUPbAJmthbwPY5Lj'
+      const b64Path = 'QmVi6vqLy8B7amdgT47WdrS4d4Z5FHB9fibHrNL8MTiT3B'
+      const mp3b64Path = 'QmQv2TitjsFZJvhbcwFvfLpQPGLsP95Hue1m2KekEbtHsP'
+      readPath(mp3b64Path)
+    })
+  </script>
+
+  <h1 id="ipfs-peers">No IPFS peers yet</h1>
+
   <center>
     <br>
     <audio controls>
