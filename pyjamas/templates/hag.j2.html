@@ -19,7 +19,7 @@
         var base64 = ""
         for await (const chunk of node.cat(path)) {
           for (c of chunk) {
-            //chunks.push(c)
+            // chunks.push(c)
             base64 += String.fromCharCode(c)
           }
         }
@@ -27,14 +27,10 @@
         // get rid of newlines
         base64 = base64.replace( /[\r\n]+/gm, "" )
 
-        const datauri = "data:audio/wav;base64," + base64
-        console.log("URI: " + datauri)
+        const datauri = "data:audio/mpeg;base64," + base64
+        console.log("Finished getting datauri")
 
-        if (datauri.includes("\n")) {
-          console.log("HAS NEWLINE")
-        }
-
-        console.log("DONE")
+        document.getElementById("ipfs-audio").src = datauri
       }
       // do the async thing
       const wavPath = 'QmYLExxC1UobcfJ5fYFcjxq8jggpQUGUPbAJmthbwPY5Lj'
@@ -44,13 +40,24 @@
     })
   </script>
 
-  <h1 id="ipfs-peers">No IPFS peers yet</h1>
 
   <center>
     <br>
+
+    <h2>HTTP Audio</h2>
     <audio controls>
       <source src="{{ url_for('static', filename='hag.wav') }}" type="audio/wav"/>
       If you're reading this, your browser sucks.
     </audio>
+
+    <br>
+    <br>
+
+    <h2>IPFS Audio</h2>
+    <h3 id="ipfs-peers">No IPFS peers yet</h3>
+    <audio controls id="ipfs-audio">
+      If you're reading this, your browser sucks.
+    </audio>
+
   </center>
 {% endblock %}
