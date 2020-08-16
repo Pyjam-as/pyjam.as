@@ -31,10 +31,15 @@
         console.log("Finished getting datauri")
 
         document.getElementById("ipfs-audio").src = datauri
+        document.getElementById("ipfs-ready").innerText = "Song downloaded!"
       }
-      // do the async thing
-      const wavPath = 'QmYLExxC1UobcfJ5fYFcjxq8jggpQUGUPbAJmthbwPY5Lj'
-      const b64Path = 'QmVi6vqLy8B7amdgT47WdrS4d4Z5FHB9fibHrNL8MTiT3B'
+      // this is the hi-quality want file you want to `ipfs get`
+      // (especially if you're looking for special stuff)
+      // const wavPath = 'QmYLExxC1UobcfJ5fYFcjxq8jggpQUGUPbAJmthbwPY5Lj'
+
+      // this is a secret... shhh!
+      // const secret = "QmNzUjQuPRS4MnZBp8vp7Y8dKXvow2caoCkekbmfmNbhUU"
+
       const mp3b64Path = 'QmQv2TitjsFZJvhbcwFvfLpQPGLsP95Hue1m2KekEbtHsP'
       readPath(mp3b64Path)
     })
@@ -55,6 +60,7 @@
 
     <h2>IPFS Audio</h2>
     <h3 id="ipfs-peers">No IPFS peers yet</h3>
+    <h5 id="ipfs-ready"></h3>
     <audio controls id="ipfs-audio">
       If you're reading this, your browser sucks.
     </audio>
