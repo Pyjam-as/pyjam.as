@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" height="100vh">
   <head>
     <meta charset="UTF-8">
 
@@ -8,15 +8,22 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nuclear.min.css') }}">
+    <style>
+      body { padding: 0; min-height: 100vh; }
+
+      marquee { min-height: 100vh; height: 100%; padding: 0; margin: 0; }
+    </style>
   </head>
 
   <body>
-    <nav class="navbar is-primary">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://pyjam.as/"><b>PYJAM.AS</b>/🐍</a>
-      </div>
-    </nav>
-    {% block content %}
-    {% endblock %}
+    <marquee width="100%" direction="down">
+      <nav class="navbar is-primary">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://pyjam.as/"><b>PYJAM.AS</b>/🐍</a>
+        </div>
+      </nav>
+      {% block content %}
+      {% endblock %}
+    </marquee>
   </body>
 </html>
