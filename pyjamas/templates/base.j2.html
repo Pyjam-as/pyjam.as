@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" height="100vh">
   <head>
     <meta charset="UTF-8">
 
@@ -10,17 +10,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nuclear.min.css') }}">
     <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
     <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
-  </head>
+    <style>
+      body { padding: 0; min-height: 100vh; }
 
+      marquee#big { min-height: 100vh; height: 100%; padding: 0; margin: 0; }
+    </style>
+  </head>
   <body>
-    <nav class="navbar is-primary">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://pyjam.as/"><b>PYJAM.AS</b>/🐍</a>
-      </div>
-    </nav>
-    {% block content %}
-    {% endblock %}
-    <div id="comment-section"></div>
+    <marquee id="big" width="100%" direction="down">
+      <nav class="navbar is-primary">
+        <marquee width="100%" direction="right">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="https://pyjam.as/"><b>PYJAM.AS</b>/🐍</a>
+          </div>
+        </marquee>
+      </nav>
+      {% block content %}
+      {% endblock %}
+      <div id="comment-section"></div>
+    </marquee>
   </body>
   <script>
   initComments({

@@ -1,11 +1,69 @@
 {% extends 'base.j2.html' %}
 
 {% block content %}
+
+  <!-- IPFS STUFF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ipfs/0.49.0/index.min.js" integrity="sha512-tkN0Ow9SQEathLaPGWL75sD9MSPBhSNGbdhMy8clcRNqOIiJZcQ7aqvL5UACKhz5mcbXk8L/vHLVE+3K2/o9zA==" crossorigin="anonymous"></script>
+  <script>
+    Ipfs.create().then(node => {
+
+      // update peers every 2 seconds
+      setInterval(function () {
+        node.swarm.peers().then(peers => {
+          document.getElementById("ipfs-peers").innerText = "IPFS Peers: " + peers.length.toString()
+        });
+      }, 2000);
+
+      async function readPath(path) {
+        console.log("Getting " + path)
+        var base64 = ""
+        for await (const chunk of node.cat(path)) {
+          for (c of chunk) {
+            // chunks.push(c)
+            base64 += String.fromCharCode(c)
+          }
+        }
+
+        // get rid of newlines
+        base64 = base64.replace( /[\r\n]+/gm, "" )
+
+        const datauri = "data:audio/mpeg;base64," + base64
+        console.log("Finished getting datauri")
+
+        document.getElementById("ipfs-audio").src = datauri
+        document.getElementById("ipfs-ready").innerText = "Song downloaded!"
+      }
+      // this is the hi-quality want file you want to `ipfs get`
+      // (especially if you're looking for special stuff)
+      // const wavPath = 'QmYLExxC1UobcfJ5fYFcjxq8jggpQUGUPbAJmthbwPY5Lj'
+
+      // this is a secret... shhh!
+      // const secret = "QmNzUjQuPRS4MnZBp8vp7Y8dKXvow2caoCkekbmfmNbhUU"
+
+      const mp3b64Path = 'QmQv2TitjsFZJvhbcwFvfLpQPGLsP95Hue1m2KekEbtHsP'
+      readPath(mp3b64Path)
+    })
+  </script>
+
+
   <center>
     <br>
+
+    <h2>HTTP Audio</h2>
     <audio controls>
       <source src="{{ url_for('static', filename='hag.wav') }}" type="audio/wav"/>
       If you're reading this, your browser sucks.
     </audio>
+
+    <br>
+    <br>
+
+    <h2>IPFS Audio</h2>
+    <h3 id="ipfs-peers">No IPFS peers yet</h3>
+    <h5 id="ipfs-ready"></h3>
+    <audio controls id="ipfs-audio">
+      If you're reading this, your browser sucks.
+    </audio>
+
   </center>
 {% endblock %}
