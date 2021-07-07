@@ -8,6 +8,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nuclear.min.css') }}">
+    <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+    <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
   </head>
 
   <body>
@@ -18,5 +20,15 @@
     </nav>
     {% block content %}
     {% endblock %}
+    <div id="comment-section"></div>
   </body>
+  <script>
+  initComments({
+    node: document.getElementById("comment-section"),
+    defaultHomeserverUrl: "https://matrix.cactus.chat:8448",
+    serverName: "cactus.chat",
+    siteName: "pyjam.as",
+    commentSectionId: "main"
+  })
+  </script>
 </html>
